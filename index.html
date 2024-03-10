@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+    <link rel = "stylesheet" href = "style.css">
+
+    <title>ComGen</title>
+    <script src = "script.js"></script>
+</head>
+<body>
+    <main>
+        <h1>Code comments generator</h1>
+
+        <div id = "result">
+            <textarea name = "result" id = "result-field" rows = 10></textarea>
+        </div>
+
+        <!-- Languages -->
+        <label for = "js"  >JavaScript</label> <input type = "radio" id = "js"   name = "language">
+        <label for = "php" >PHP</label>        <input type = "radio" id = "php"  name = "language">
+        <label for = "java">Java</label>       <input type = "radio" id = "java" name = "language">
+
+        <h2>Function comment</h2>
+        <div class = "form" id = "form-function">
+            <!-- Details -->
+            <label for = "title">Title</label>
+            <input type = "text" id = "func-title" name = "title" value = "testFunction">
+
+            <label for = "desc">Description</label>
+            <textarea id = "func-desc" name = "desc">This is a test description.</textarea>
+
+            <!-- Arguments -->
+            <button onclick = "alert('a')">Add argument</button>
+
+            <!-- Return -->
+            <button onclick = "alert('a')">Add return</button>
+
+            <!-- Generate -->
+            <button onclick = "generateFunction()">Generate</button>
+        </div>
+    </main>
+</body>
+</html>

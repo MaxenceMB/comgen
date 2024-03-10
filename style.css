@@ -1,0 +1,18 @@
+main {
+    width: 75%;
+    margin: auto;
+}
+
+#result {
+    width: 100%;
+}
+
+#result-field {
+    width: 100%;
+    resize: none;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
