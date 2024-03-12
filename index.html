@@ -24,14 +24,15 @@
         <h2>Function comment</h2>
         <div class = "form" id = "form-function">
             <!-- Details -->
-            <label for = "title">Title</label>
+            <label for = "func-title">Title</label>
             <input type = "text" id = "func-title" name = "title" value = "testFunction">
 
-            <label for = "desc">Description</label>
+            <label for = "func-desc">Description</label>
             <textarea id = "func-desc" name = "desc">This is a test description.</textarea>
 
             <!-- Arguments -->
-            <button onclick = "alert('a')">Add argument</button>
+            <button onclick = "addArgumentForm()">Add argument</button>
+            <div id = "func-args"></div>
 
             <!-- Return -->
             <button onclick = "alert('a')">Add return</button>
