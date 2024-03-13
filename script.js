@@ -1,5 +1,5 @@
 const comLength = 75;
-var argCount = 0;
+var argId = 0;
 
 function generateFunction() {
     var resultField = document.getElementById("result-field");
@@ -12,6 +12,8 @@ function generateFunction() {
     result += addDesc(comLength, desc, 0);
     result += addEmptyLine();
     result += addArguments();
+    result += addEmptyLine();
+    result += addReturn();
     result += addEmptyLine();
     result += addBotLine(comLength, ' ');
 
@@ -101,6 +103,15 @@ function addArguments() {
     return argsLines;
 }
 
+function addReturn() {    
+    var type = document.getElementById("func-return-type").value;
+    var desc = document.getElementById("func-return-desc").value;
+
+    var ret = {"type": type, "desc": desc};
+
+    return returnLine = "** Returns:\n** - " + ret["type"] + " : " + breakWord(comLength-(ret["type"].length+8), ret["desc"], ret["type"].length+5) + "\n";;
+}
+
 function addBotLine(size, filler) {
     var result = "\\*";
     for(i = 0; i < size-4; i++) { result += filler; } result += "*/\n";
@@ -109,24 +120,46 @@ function addBotLine(size, filler) {
 
 function addArgumentForm() {
     var arg = document.createElement('div');
-    arg.setAttribute("data-arg", argCount)
+    arg.setAttribute("data-arg", argId)
     arg.className = "func-arg-form"
     arg.innerHTML = `<label for = "func-arg-type">Type</label>`
-    +               `<input type = "text" id = "func-arg-type" name = "type" value = "int">`
+    +               `<input type = "text" id = "func-arg-type" name = "type" placeholder = "int">`
                     
     +               `<label for = "func-arg-name">Name</label>`
-    +               `<input type = "text" id = "func-arg-name" name = "name" value = "id">`
+    +               `<input type = "text" id = "func-arg-name" name = "name" placeholder = "id">`
 
     +               `<label for = "func-arg-desc">Description</label>`
-    +               `<textarea id = "func-arg-desc" name = "desc">The id of the current object</textarea>`
+    +               `<textarea id = "func-arg-desc" name = "desc" placeholder = "The id of the current object"></textarea>`
 
-    +               `<button onclick = "removeArgumentForm(` + argCount + `)">X</button>`
+    +               `<button onclick = "removeArgumentForm(` + argId + `)">X</button>`
     +           `</div>`;
 
     document.getElementById("func-args").append(arg);
-    argCount++;
+    argId++;
 }
 
 function removeArgumentForm(id) {
     arg = document.querySelectorAll("[data-arg = '" + id + "']")[0].remove();
+}
+
+function addReturnForm() {
+    var arg = document.createElement('div');
+    arg.setAttribute("id", "func-return-form")
+    arg.innerHTML = `<label for = "func-return-type">Type</label>`
+    +               `<input type = "text" id = "func-return-type" name = "type" placeholder = "int">`
+
+    +               `<label for = "func-return-desc">Description</label>`
+    +               `<textarea id = "func-return-desc" name = "desc" placeholder = "The number of objects in the list corresponding to the filter."></textarea>`
+
+    +               `<button onclick = "removeReturnForm()">X</button>`
+    +           `</div>`;
+
+    document.getElementById("func-return").append(arg);
+    
+    document.getElementById("btnReturn").disabled = true;
+}
+
+function removeReturnForm() {
+    arg = document.getElementById("func-return-form").remove();
+    document.getElementById("btnReturn").disabled = false;
 }
