@@ -10,6 +10,7 @@ main {
 #result-field {
     width: 100%;
     resize: none;
+    overflow: scroll;
 }
 
 .form {

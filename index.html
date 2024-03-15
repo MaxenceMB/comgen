@@ -14,12 +14,15 @@
 
         <div id = "result">
             <textarea name = "result" id = "result-field" rows = 10></textarea>
-        </div>
+            
+            <label for = "chk-spaced">Spaced</label>
+            <input type = "checkbox" id = "chk-spaced" name = "spaced" checked>
 
-        <!-- Languages -->
-        <label for = "js"  >JavaScript</label> <input type = "radio" id = "js"   name = "language">
-        <label for = "php" >PHP</label>        <input type = "radio" id = "php"  name = "language">
-        <label for = "java">Java</label>       <input type = "radio" id = "java" name = "language">
+            <label for = "nb-size">Size</label>
+            <input type = "number" id = "nb-size" name = "size" value = "60">
+
+            <button id = "btn-copy" onclick = "copyResult()">Copy</button>
+        </div>
 
         <h2>Function comment</h2>
         <div class = "form" id = "form-function">

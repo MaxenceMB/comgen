@@ -1,20 +1,23 @@
-const comLength = 75;
-var argId = 0;
+var spaced = true;
+var comLength = 60;
+
+var hasReturn = false;
+var nbArgs = argId = 0;
 
 function generateFunction() {
-    var resultField = document.getElementById("result-field");
-    var title = document.getElementById("func-title").value;
-    var desc  = document.getElementById("func-desc").value;
-    var result = "";
+    let resultField = document.getElementById("result-field");
+
+    spaced = document.getElementById("chk-spaced").checked;
+    comLength = document.getElementById("nb-size").value;
+
+    let title = document.getElementById("func-title").value;
+    let desc  = document.getElementById("func-desc").value;
+    let result = "";
 
     result += addTopLine(comLength, title, ' ');
-    result += addEmptyLine();
     result += addDesc(comLength, desc, 0);
-    result += addEmptyLine();
-    result += addArguments();
-    result += addEmptyLine();
-    result += addReturn();
-    result += addEmptyLine();
+    if(nbArgs > 0) result += addArguments();
+    if(hasReturn)  result += addReturn();
     result += addBotLine(comLength, ' ');
 
     resultField.value = result;
@@ -25,29 +28,32 @@ function addEmptyLine() {
 }
 
 function addTopLine(size, title, filler) {
-    var result = "/*";
-    var titleSize = title.length;
+    let result = "/*";
+    let titleSize = title.length;
 
-    var firstPart = (size / 2) - ((titleSize / 2) + 1) - 2;
-    var lastPart = (titleSize % 2 == 0) ? (size / 2) - ((titleSize + 1) / 2) - 3 : ((size - 1) / 2) - (titleSize / 2) - 3;
+    let firstPart = (size / 2) - ((titleSize / 2) + 1) - 2;
+    let lastPart = (titleSize % 2 == 0) ? (size / 2) - ((titleSize + 1) / 2) - 3 : ((size - 1) / 2) - (titleSize / 2) - 3;
 
     for(i = 0; i < firstPart; i++) { result += filler; };
     result += " " + title + " ";
-    for(i = 0; i < lastPart; i++) { result += filler; } result += "*\\\n";
+    for(i = 0; i < lastPart; i++) { result += filler; }
+    result += "*\\\n";
 
-    return result;
+    return spaced ? result += addEmptyLine() : result;
 }
 
 function addDesc(size, desc, tab) {
-    lineSize = size - 3; 
-    return "** " + breakWord(lineSize, desc, tab) + '\n';
+    let lineSize = size - 3; 
+    let goodDesc = "** " + breakWord(lineSize, desc, tab) + '\n';
+    return spaced ? goodDesc += addEmptyLine() : goodDesc;
 }
 
 function breakWord(size, text, tab) {
+
     // If the description goes on more than one line
     if(text.length > size - tab) {
-        newText = "";
-        lastSpace = count = lineStart = 0;
+        let newText = "";
+        let lastSpace = count = lineStart = 0;
 
         // For every character
         for(i = 0; i < text.length; i++) {
@@ -73,8 +79,9 @@ function breakWord(size, text, tab) {
 }
 
 function addArguments() {
-    var args = document.getElementsByClassName("func-arg-form");
-    var argsarray = [];
+    let args = document.getElementsByClassName("func-arg-form");
+    let argsarray = [];
+
     for(i = 0; i < args.length; i++) {
         type = args[i].querySelector("#func-arg-type").value;
         name = args[i].querySelector("#func-arg-name").value;
@@ -84,13 +91,13 @@ function addArguments() {
         argsarray[i] = arg;
     }
 
-    infoLength = 0;
+    let infoLength = 0;
     for(j = 0; j < argsarray.length; j++) {
         length = argsarray[j]["type"].length + argsarray[j]["name"].length + 1;
         if(infoLength < length) infoLength = length;
     }
 
-    argsLines = "** Arguments:\n";
+    let argsLines = "** Arguments:\n";
     for(k = 0; k < argsarray.length; k++) {
         length = argsarray[k]["type"].length + argsarray[k]["name"].length + 1;
         spaces = infoLength - length;
@@ -100,22 +107,29 @@ function addArguments() {
         argsLines += " : " + breakWord(comLength-(infoLength+8), argsarray[k]["desc"], infoLength+5) + "\n";
     }
 
-    return argsLines;
+    return spaced ? argsLines += addEmptyLine() : argsLines;
 }
 
 function addReturn() {    
-    var type = document.getElementById("func-return-type").value;
-    var desc = document.getElementById("func-return-desc").value;
+    let type = document.getElementById("func-return-type").value;
+    let desc = document.getElementById("func-return-desc").value;
 
-    var ret = {"type": type, "desc": desc};
-
-    return returnLine = "** Returns:\n** - " + ret["type"] + " : " + breakWord(comLength-(ret["type"].length+8), ret["desc"], ret["type"].length+5) + "\n";;
+    let ret = {"type": type, "desc": desc};
+    let goodReturn = "** Returns:\n** - " + ret["type"] + " : " + breakWord(comLength-(ret["type"].length+8), ret["desc"], ret["type"].length+5) + "\n";
+    
+    return spaced ? goodReturn += addEmptyLine() : goodReturn;
 }
 
 function addBotLine(size, filler) {
-    var result = "\\*";
+    let result = "\\*";
     for(i = 0; i < size-4; i++) { result += filler; } result += "*/\n";
     return result;
+}
+
+function copyResult() {
+    let resultField = document.getElementById("result-field");
+    resultField.select();
+    navigator.clipboard.writeText(resultField.value);
 }
 
 function addArgumentForm() {
@@ -135,11 +149,14 @@ function addArgumentForm() {
     +           `</div>`;
 
     document.getElementById("func-args").append(arg);
+
     argId++;
+    nbArgs++;
 }
 
 function removeArgumentForm(id) {
     arg = document.querySelectorAll("[data-arg = '" + id + "']")[0].remove();
+    nbArgs--;
 }
 
 function addReturnForm() {
@@ -157,9 +174,11 @@ function addReturnForm() {
     document.getElementById("func-return").append(arg);
     
     document.getElementById("btnReturn").disabled = true;
+    hasReturn = true;
 }
 
 function removeReturnForm() {
     arg = document.getElementById("func-return-form").remove();
     document.getElementById("btnReturn").disabled = false;
+    hasReturn = false;
 }
