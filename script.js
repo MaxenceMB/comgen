@@ -1,5 +1,4 @@
-var spaced = true;
-var comLength = 60;
+var spaced = comLength = hasCorners = filler = null;
 
 var hasReturn = false;
 var nbArgs = argId = 0;
@@ -7,19 +6,19 @@ var nbArgs = argId = 0;
 function generateFunction() {
     let resultField = document.getElementById("result-field");
 
-    spaced = document.getElementById("chk-spaced").checked;
-    comLength = document.getElementById("nb-size").value;
+    getOptions()
 
     let title = document.getElementById("func-title").value;
     let desc  = document.getElementById("func-desc").value;
     let result = "";
 
-    result += addTopLine(comLength, title, ' ');
+    result += addTopLine(comLength, title, filler);
     result += addDesc(comLength, desc, 0);
     if(nbArgs > 0) result += addArguments();
     if(hasReturn)  result += addReturn();
-    result += addBotLine(comLength, ' ');
+    result += addBotLine(comLength, filler);
 
+    resultField.rows = Math.min(15, (result.match(/\n/g) || '').length + 1);
     resultField.value = result;
 }
 
@@ -37,15 +36,19 @@ function addTopLine(size, title, filler) {
     for(i = 0; i < firstPart; i++) { result += filler; };
     result += " " + title + " ";
     for(i = 0; i < lastPart; i++) { result += filler; }
-    result += "*\\\n";
+    result += (hasCorners) ? "*\\\n" : filler + filler + "\n";
 
     return spaced ? result += addEmptyLine() : result;
 }
 
 function addDesc(size, desc, tab) {
-    let lineSize = size - 3; 
-    let goodDesc = "** " + breakWord(lineSize, desc, tab) + '\n';
-    return spaced ? goodDesc += addEmptyLine() : goodDesc;
+    if(desc != "") {
+        let lineSize = size - 3; 
+        let goodDesc = "** " + breakWord(lineSize, desc, tab) + '\n';
+        return spaced ? goodDesc += addEmptyLine() : goodDesc;
+    } else {
+        return "";
+    }
 }
 
 function breakWord(size, text, tab) {
@@ -121,15 +124,18 @@ function addReturn() {
 }
 
 function addBotLine(size, filler) {
-    let result = "\\*";
-    for(i = 0; i < size-4; i++) { result += filler; } result += "*/\n";
+    if(filler == ' ' && !hasCorners) return "*/";
+    
+    let result = (hasCorners) ?  "\\*" : filler + filler;
+    for(i = 0; i < size-4; i++) { result += filler; }
+    result += "*/\n";
     return result;
 }
 
 function copyResult() {
     let resultField = document.getElementById("result-field");
-    resultField.select();
     navigator.clipboard.writeText(resultField.value);
+    alert("Copied to clipboard !");
 }
 
 function addArgumentForm() {
@@ -181,4 +187,13 @@ function removeReturnForm() {
     arg = document.getElementById("func-return-form").remove();
     document.getElementById("btnReturn").disabled = false;
     hasReturn = false;
+}
+
+function getOptions() {
+    spaced = document.getElementById("chk-spaced").checked;
+    comLength = document.getElementById("nb-size").value;
+    hasCorners = document.getElementById("chk-corners").checked;
+    filler = document.getElementById("char-filler").value;
+
+    if(filler == "") filler = ' ';
 }

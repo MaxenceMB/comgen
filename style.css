@@ -1,6 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Quicksand:wght@300..700&display=swap');
+
+:root {
+    --black : #35374B;
+    --white : #EEEEEE;
+
+    --dark-accent  : #344955;
+    --mid-accent   : #50727B;
+    --light-accent : #78A083;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    background-color: var(--black);
+    color: var(--white);
+
+    width: 100%;
+    height: 100%;
+
+    font-family: "Quicksand";
+}
+
 main {
     width: 75%;
+    height: 100%;
     margin: auto;
+    padding: 25px;
+
+    background-color: var(--black);
+}
+
+h1 {
+    color: var(--light-accent);
+    border-bottom: solid 4px var(--mid-accent);
+
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+h1 > span {
+    color: var(--mid-accent);
+}
+
+button {
+    background-color: var(--mid-accent);
+    color: var(--white);
+
+    border: none;
+    border-radius: 4px;
+
+    padding: 4px;
+
+    transition: 0.1s;
+}
+
+button:hover {
+    background-color: var(--light-accent);
+    cursor: pointer;
 }
 
 #result {
@@ -9,11 +69,40 @@ main {
 
 #result-field {
     width: 100%;
+    padding: 5px;
     resize: none;
-    overflow: scroll;
+    overflow: auto;
+
+    border: none;
+    border-radius: 4px;
+    background-color: var(--white);
+    color: var(--mid-accent);
+    outline: none;
+}
+
+#comment-options {
+    margin-top: 10px;
+    
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.checkbox-fields {
+    display: flex;
+}
+
+input[type="checkbox"] {
+    accent-color: var(--light-accent);
+}
+
+#btn-copy {
+    padding: 10px 25px;
+    margin-left: auto;
 }
 
 .form {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }

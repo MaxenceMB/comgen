@@ -10,22 +10,42 @@
 </head>
 <body>
     <main>
-        <h1>Code comments generator</h1>
+        <h1><span>//</span> Code comments generator</h1>
 
         <div id = "result">
-            <textarea name = "result" id = "result-field" rows = 10></textarea>
-            
-            <label for = "chk-spaced">Spaced</label>
-            <input type = "checkbox" id = "chk-spaced" name = "spaced" checked>
+            <textarea name = "result" id = "result-field" rows = 5></textarea>
 
-            <label for = "nb-size">Size</label>
-            <input type = "number" id = "nb-size" name = "size" value = "60">
+            <div id = "comment-options">
+                <div class = "checkbox-field">
+                    <input type = "checkbox" id = "chk-spaced" name = "spaced" checked>
+                    <label for = "chk-spaced">Spaced</label>
+                </div>
+    
+                <div class = "checkbox-field">
+                    <input type = "checkbox" id = "chk-corners" name = "corners" checked>
+                    <label for = "chk-corners">Corners</label>
+                </div>
+    
+                <div>
+                    <label for = "nb-size">Size</label>
+                    <input type = "number" id = "nb-size" name = "size" value = "60">
+                </div>
+    
+                <div>
+                    <label for = "char-fill">Filler</label>
+                    <input type = "text" id = "char-filler" name = "filler" maxlength="1">
+                </div>
 
-            <button id = "btn-copy" onclick = "copyResult()">Copy</button>
+                
+                <button id = "btn-copy" onclick = "copyResult()">Copy</button>
+            </div>
         </div>
+
+        
 
         <h2>Function comment</h2>
         <div class = "form" id = "form-function">
+            
             <!-- Details -->
             <label for = "func-title">Title</label>
             <input type = "text" id = "func-title" name = "title" value = "testFunction">
