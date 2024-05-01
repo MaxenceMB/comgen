@@ -18,7 +18,6 @@ function generateFunction() {
     if(hasReturn)  result += addReturn();
     result += addBotLine(comLength, filler);
 
-    resultField.rows = Math.min(15, (result.match(/\n/g) || '').length + 1);
     resultField.value = result;
 }
 
@@ -139,29 +138,68 @@ function copyResult() {
 }
 
 function addArgumentForm() {
+    // Field
     var arg = document.createElement('div');
     arg.setAttribute("data-arg", argId)
     arg.className = "func-arg-form"
-    arg.innerHTML = `<label for = "func-arg-type">Type</label>`
-    +               `<input type = "text" id = "func-arg-type" name = "type" placeholder = "int">`
-                    
-    +               `<label for = "func-arg-name">Name</label>`
-    +               `<input type = "text" id = "func-arg-name" name = "name" placeholder = "id">`
+    arg.innerHTML =     `<div class = "func-arg-header">`
+        +                   `<h3>Argument ` + argId + `</h3>`
+        +                   `<button onclick = "removeArgumentForm(` + argId + `)">X</button>`
+        +               `</div>`
+        +               `<div class = "func-arg-form-cols">`
+        +                   `<div class = "func-arg-form-col1">`
+        +                       `<div class = "func-arg-form-field">`
+        +                           `<label for = "func-arg-type">Type</label>`
+        +                           `<input type = "text" id = "func-arg-type" name = "type" oninput = "changeArgumentType(this, ` + argId + `)" placeholder = "int">`
+        +                       `</div>`
+        +                       `<div class = "func-arg-form-field">`
+        +                           `<label for = "func-arg-name">Name</label>`
+        +                           `<input type = "text" id = "func-arg-name" name = "name" oninput = "changeArgumentName(this, ` + argId + `)" placeholder = "id">`
+        +                       `</div>`
+        +                   `</div>`
+        +                   `<div class = "func-arg-form-col2">`
+        +                       `<label for = "func-arg-desc">Description</label>`
+        +                       `<textarea id = "func-arg-desc" name = "desc" placeholder = "The id of the current object"></textarea>`
+        +                   `</div>`
+        +               `</div>`
+        +           `</div>`;
 
-    +               `<label for = "func-arg-desc">Description</label>`
-    +               `<textarea id = "func-arg-desc" name = "desc" placeholder = "The id of the current object"></textarea>`
+    document.getElementById("func-args-main").append(arg);
 
-    +               `<button onclick = "removeArgumentForm(` + argId + `)">X</button>`
-    +           `</div>`;
-
-    document.getElementById("func-args").append(arg);
+    // Name on list
+    var argName = document.createElement('li');
+    argName.setAttribute("data-arg", argId)
+    argName.className = "func-arg-side-list-name"
+    argName.innerHTML = `- <span class = "arg-list-type"></span> <span class = "arg-list-name">Argument ` + argId + `</span>`;
+    document.getElementById("func-args-side-list").append(argName);
 
     argId++;
     nbArgs++;
 }
 
+function changeArgumentType(input, id) {
+    let span = document.querySelector(`.func-arg-side-list-name[data-arg = "` + id + `"] > span.arg-list-type`);
+    if(input.value == "") {
+        span.innerHTML = "";
+    } else {
+        span.innerHTML = "[" + input.value + "]";
+    }
+}
+
+function changeArgumentName(input, id) {
+    let span = document.querySelector(`.func-arg-side-list-name[data-arg = "` + id + `"] > span.arg-list-name`);
+    if(input.value == "") {
+        span.innerHTML = "Argument " + id;
+    } else {
+        span.innerHTML = input.value;
+    }
+}
+
 function removeArgumentForm(id) {
-    arg = document.querySelectorAll("[data-arg = '" + id + "']")[0].remove();
+    args = document.querySelectorAll("[data-arg = '" + id + "']");
+    for (i = 0; i < args.length; i++) {
+        args[i].remove();
+    }
     nbArgs--;
 }
 
