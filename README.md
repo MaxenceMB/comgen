@@ -37,12 +37,12 @@ I would also add more personalization options like choose between single line an
 ---
 
 ```
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ comgen ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ comgen ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\
 **
-** So this is it. ComGen is not trying to revolutionate how programming works, it simply wants to
-** help people like me (obsessed with clean code periodically) make their journey easier. Having
-** such a tool available makes the process less time consuming and at the end prettier. Only W's
-** here.
+** So this is it. ComGen is not trying to revolutionate how programming works, it simply wants 
+** to help people like me (obsessed with clean code periodically) make their journey easier. 
+** Having such a tool available makes the process less time consuming and at the end prettier. 
+** Only W's here.
 **
 ** Arguments:
 ** - DateTime time : Just like 2 minutes of your time
@@ -51,7 +51,7 @@ I would also add more personalization options like choose between single line an
 ** Returns:
 ** - String : A pretty comment for your pretty code !
 **
-\*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+\*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 ```
 
 # ➡️ [TRY IT](https://comgen.max-mb.com) ⬅️
