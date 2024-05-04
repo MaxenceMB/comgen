@@ -44,30 +44,41 @@
         </div>
 
 
-        <h2>Function comment</h2>
+        <h2 id = "details-header">Function</h2>
         <div class = "form" id = "form-function">
             
             <!-- Details -->
-            <label for = "func-title">Title</label>
-            <input type = "text" id = "func-title" name = "title" value = "testFunction">
-
-            <label for = "func-desc">Description</label>
-            <textarea id = "func-desc" name = "desc">This is a test description.</textarea>
+            <div id = "func-details">
+                <h3>Details</h3>
+                <div class = "func-form-field">
+                    <label for = "func-title">Title</label>
+                    <input type = "text" id = "func-title" name = "title" value = "testFunction">
+                </div>
+                <div class = "func-form-field">
+                    <label for = "func-desc">Description</label>
+                    <textarea id = "func-desc" name = "desc">This is a test description.</textarea>
+                </div>
+            </div>
 
             <!-- Arguments -->
-            <h2>Arguments</h2>
-            <div id = "func-args">
-                <div id = "func-args-side">
-                    <button class = "btn-add" onclick = "addArgumentForm()">Add argument</button>
-                    <ul id = "func-args-side-list"></ul>
-                </div>
-                <div id = "func-args-main">
+            <div id = "func-arg">
+                <h3>Arguments</h3>
+                <div id = "func-args">
+                    <div id = "func-args-side">
+                        <button class = "btn-add" onclick = "addArgumentForm()">Add argument</button>
+                        <ul id = "func-args-side-list"></ul>
+                    </div>
+                    <div id = "func-args-main">
+                    </div>
                 </div>
             </div>
 
             <!-- Return -->
-            <button id = "btnReturn" onclick = "addReturnForm()">Add return</button>
-            <div id = "func-return"></div>
+            <div id = "func-ret">
+                <h3>Return</h3>
+                <button id = "btnReturn" onclick = "addReturnForm()">Add return</button>
+                <div id = "func-return"></div>
+            </div>
         </div>
     </main>
 </body>

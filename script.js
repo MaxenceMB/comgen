@@ -143,16 +143,16 @@ function addArgumentForm() {
     arg.setAttribute("data-arg", argId)
     arg.className = "func-arg-form"
     arg.innerHTML =     `<div class = "func-arg-header">`
-        +                   `<h3>Argument ` + argId + `</h3>`
-        +                   `<button onclick = "removeArgumentForm(` + argId + `)">X</button>`
+        +                   `<h4>Argument ` + argId + `</h4>`
+        +                   `<button onclick = "removeArgumentForm(` + argId + `)">✖️</button>`
         +               `</div>`
         +               `<div class = "func-arg-form-cols">`
         +                   `<div class = "func-arg-form-col1">`
-        +                       `<div class = "func-arg-form-field">`
+        +                       `<div class = "func-form-field">`
         +                           `<label for = "func-arg-type">Type</label>`
         +                           `<input type = "text" id = "func-arg-type" name = "type" oninput = "changeArgumentType(this, ` + argId + `)" placeholder = "int">`
         +                       `</div>`
-        +                       `<div class = "func-arg-form-field">`
+        +                       `<div class = "func-form-field">`
         +                           `<label for = "func-arg-name">Name</label>`
         +                           `<input type = "text" id = "func-arg-name" name = "name" oninput = "changeArgumentName(this, ` + argId + `)" placeholder = "id">`
         +                       `</div>`
@@ -170,7 +170,7 @@ function addArgumentForm() {
     var argName = document.createElement('li');
     argName.setAttribute("data-arg", argId)
     argName.className = "func-arg-side-list-name"
-    argName.innerHTML = `- <span class = "arg-list-type"></span> <span class = "arg-list-name">Argument ` + argId + `</span>`;
+    argName.innerHTML = `<button onclick = "removeArgumentForm(` + argId + `)">✖</button>  - <span class = "arg-list-type"></span> <span class = "arg-list-name">Argument ` + argId + `</span>`;
     document.getElementById("func-args-side-list").append(argName);
 
     argId++;
@@ -206,24 +206,27 @@ function removeArgumentForm(id) {
 function addReturnForm() {
     var arg = document.createElement('div');
     arg.setAttribute("id", "func-return-form")
-    arg.innerHTML = `<label for = "func-return-type">Type</label>`
-    +               `<input type = "text" id = "func-return-type" name = "type" placeholder = "int">`
-
-    +               `<label for = "func-return-desc">Description</label>`
-    +               `<textarea id = "func-return-desc" name = "desc" placeholder = "The number of objects in the list corresponding to the filter."></textarea>`
-
-    +               `<button onclick = "removeReturnForm()">X</button>`
+    arg.innerHTML = `<div class = "func-form-field">`
+    +                   `<label for = "func-return-type">Type</label>`
+    +                   `<input type = "text" id = "func-return-type" name = "type" placeholder = "int">`
+    +               `</div>`
+    +               `<div class = "func-form-field">`
+    +                   `<label for = "func-return-desc">Description</label>`
+    +                   `<textarea id = "func-return-desc" name = "desc" placeholder = "The number of objects in the list corresponding to the filter."></textarea>`
+    +               `</div>`
     +           `</div>`;
 
     document.getElementById("func-return").append(arg);
     
-    document.getElementById("btnReturn").disabled = true;
+    document.getElementById("btnReturn").setAttribute("onclick", "removeReturnForm()");
+    document.getElementById("btnReturn").innerHTML = "Remove return";
     hasReturn = true;
 }
 
 function removeReturnForm() {
     arg = document.getElementById("func-return-form").remove();
-    document.getElementById("btnReturn").disabled = false;
+    document.getElementById("btnReturn").setAttribute("onclick", "addReturnForm()");
+    document.getElementById("btnReturn").innerHTML = "Add return";
     hasReturn = false;
 }
 
