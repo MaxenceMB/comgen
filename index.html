@@ -13,32 +13,36 @@
         <h1><span>// </span>Code comments generator</h1>
 
         <div id = "result">
-            <textarea name = "result" id = "result-field" rows = 15 spellcheck = "false"></textarea>
+            <textarea name = "result" id = "result-field" rows = 10 spellcheck = "false"></textarea>
 
             <div id = "comment-options">
-                <div class = "checkbox-field option">
-                    <input type = "checkbox" id = "chk-spaced" name = "spaced" checked>
-                    <label for = "chk-spaced">Spaced</label>
-                </div>
-    
-                <div class = "checkbox-field option">
-                    <input type = "checkbox" id = "chk-corners" name = "corners" checked>
-                    <label for = "chk-corners">Corners</label>
-                </div>
-    
-                <div class = "option">
-                    <label for = "nb-size">Size</label>
-                    <input type = "number" id = "nb-size" name = "size" value = "60">
-                </div>
-    
-                <div class = "option">
-                    <label for = "char-fill">Filler</label>
-                    <input type = "text" id = "char-filler" name = "filler" maxlength="1">
+                <div class = "options-row">
+                    <div class = "options-col">
+                        <div class = "checkbox-field option">
+                            <input type = "checkbox" id = "chk-spaced" name = "spaced" checked>
+                            <label for = "chk-spaced">Spaced</label>
+                        </div>
+            
+                        <div class = "checkbox-field option">
+                            <input type = "checkbox" id = "chk-corners" name = "corners" checked>
+                            <label for = "chk-corners">Corners</label>
+                        </div>
+                    </div>
+        
+                    <div class = "options-col right">
+                        <div class = "option">
+                            <label for = "nb-size">Size</label>
+                            <input type = "number" id = "nb-size" name = "size" value = "60">
+                        </div>
+            
+                        <div class = "option">
+                            <label for = "char-fill">Filler</label>
+                            <input type = "text" id = "char-filler" name = "filler" maxlength="1">
+                        </div>
+                    </div>
                 </div>
                 
                 <button id = "btn-copy" onclick = "copyResult()">Copy</button>
-
-                <!-- Generate -->
                 <button id = "btn-generate" onclick = "generateFunction()">Generate</button>
             </div>
         </div>
@@ -79,6 +83,19 @@
                 <button id = "btnReturn" onclick = "addReturnForm()">Add return</button>
                 <div id = "func-return"></div>
             </div>
+        </div>
+
+        <div id = "lot-of-text">
+            <h2>How to use</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi perspiciatis illo dolorum molestias, at eligendi, veritatis, nam consectetur facere dicta minima quibusdam debitis! Voluptas eaque porro quis corporis, veritatis nisi? 
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi perspiciatis illo dolorum molestias, at eligendi, veritatis, nam consectetur facere dicta minima quibusdam debitis! Voluptas eaque porro quis corporis, veritatis nisi?
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi perspiciatis illo dolorum molestias, at eligendi, veritatis, nam consectetur facere dicta minima quibusdam debitis! Voluptas eaque porro quis corporis, veritatis nisi?
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi perspiciatis illo dolorum molestias, at eligendi, veritatis, nam consectetur facere dicta minima quibusdam debitis! Voluptas eaque porro quis corporis, veritatis nisi?
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi perspiciatis illo dolorum molestias, at eligendi, veritatis, nam consectetur facere dicta minima quibusdam debitis! Voluptas eaque porro quis corporis, veritatis nisi?
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi perspiciatis illo dolorum molestias, at eligendi, veritatis, nam consectetur facere dicta minima quibusdam debitis! Voluptas eaque porro quis corporis, veritatis nisi?
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi perspiciatis illo dolorum molestias, at eligendi, veritatis, nam consectetur facere dicta minima quibusdam debitis! Voluptas eaque porro quis corporis, veritatis nisi?
+            </p>
         </div>
     </main>
 </body>

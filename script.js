@@ -144,7 +144,7 @@ function addArgumentForm() {
     arg.className = "func-arg-form"
     arg.innerHTML =     `<div class = "func-arg-header">`
         +                   `<h4>Argument ` + argId + `</h4>`
-        +                   `<button onclick = "removeArgumentForm(` + argId + `)">✖️</button>`
+        +                   `<button class = "btn-del" onclick = "removeArgumentForm(` + argId + `)">✖</button>`
         +               `</div>`
         +               `<div class = "func-arg-form-cols">`
         +                   `<div class = "func-arg-form-col1">`
@@ -170,7 +170,7 @@ function addArgumentForm() {
     var argName = document.createElement('li');
     argName.setAttribute("data-arg", argId)
     argName.className = "func-arg-side-list-name"
-    argName.innerHTML = `<button onclick = "removeArgumentForm(` + argId + `)">✖</button>  - <span class = "arg-list-type"></span> <span class = "arg-list-name">Argument ` + argId + `</span>`;
+    argName.innerHTML = `<button class = "btn-del" onclick = "removeArgumentForm(` + argId + `)">✖</button>  - <span class = "arg-list-type"></span> <span class = "arg-list-name">Argument ` + argId + `</span>`;
     document.getElementById("func-args-side-list").append(argName);
 
     argId++;

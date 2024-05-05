@@ -65,15 +65,21 @@ button:hover {
 
 #result {
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
 }
 
 #result-field {
-    width: 100%;
     font-size: 15px;
     color: var(--mid-accent);
+
+    flex: 75%;
 }
 
-textarea, input[type=text] {
+textarea, input {
+    font-size: 15px;
+    
     padding: 5px;
     resize: none;
     overflow: auto;
@@ -86,39 +92,42 @@ textarea, input[type=text] {
 }
 
 #comment-options {
-    margin-top: 10px;
+    flex: 25%;
     
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: left;
     gap: 15px;
+    
+    height: inherit;
 }
 
 .option {
-    display: block;
-    text-align: center;
-}
-
-.checkbox-fields {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+
+    text-align: left;
+    line-height: 30px;
+    height: 30px;
 }
 
 input[type="checkbox"] {
     accent-color: var(--light-accent);
 }
 
-
 #nb-size {
-    width: 100px;
-    font-size: 20px;
+    width: 75px;
 }
 
-#btn-copy {
-    padding: 10px 25px;
-    margin-left: auto;
+#char-filler {
+    width: 75px;
 }
 
-#btn-generate {
-    padding: 10px 75px;
+button {
+    width: 100%;
+    padding: 10px;
 }
 
 #form-function {
@@ -126,6 +135,27 @@ input[type="checkbox"] {
     flex-direction: row;
     justify-content: space-evenly;
     gap: 15px;
+
+    
+    height: 60vh;
+    overflow: hidden;
+}
+
+.options-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.options-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#btn-copy {
+    margin-top: auto;
 }
 
 .form {
@@ -143,17 +173,13 @@ h3 {
     border-bottom: solid 1px var(--white);
 }
 
-.btn-add {
-    width: 100%;
-}
-
 #details-header {
     text-align: center;
     margin: 45px 15px 25px;
 }
 
 #func-details {
-    flex: 25%;
+    flex: 20%;
 
     display: flex;
     flex-direction: column;
@@ -166,7 +192,7 @@ h3 {
 }
 
 #func-arg {
-    flex: 50%;
+    flex: 60%;
 
     display: flex;
     flex-direction: column;
@@ -176,7 +202,7 @@ h3 {
 #func-args {
     display: flex;
     flex-direction: row;
-    gap: 25px;
+    gap: 15px;
 }
 
 #func-args-side {
@@ -191,7 +217,11 @@ h3 {
 }
 
 #func-args-main {
-    flex: 1 1 70%;
+    flex: 0 0 70%;
+    height: 50vh;
+
+    overflow-y: scroll;
+    scroll-margin-left: 5px;
 }
 
 .func-arg-form {
@@ -200,6 +230,8 @@ h3 {
     gap: 10px;
 
     margin: 0 0 25px;
+    
+    border-right: 5px solid transparent;
 }
 
 .func-arg-header {
@@ -239,8 +271,15 @@ h3 {
     resize: vertical;
 }
 
+.btn-del {
+    width: fit-content;
+    height: fit-content;
+
+    padding: 5px;
+}
+
 #func-ret {
-    flex: 25%;
+    flex: 20%;
 
     display: flex;
     flex-direction: column;
@@ -251,4 +290,8 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+#lot-of-text {
+    text-align: justify;
 }
