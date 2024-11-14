@@ -41,9 +41,9 @@ function addTopLine(size, title, filler) {
 }
 
 function addDesc(size, desc, tab) {
-    if(desc != "") {
+    if (desc != "") {
         let lineSize = size - 3; 
-        let goodDesc = "** " + breakWord(lineSize, desc, tab) + '\n';
+        let goodDesc = "** " + breakWord(lineSize, desc, tab);
         return spaced ? goodDesc += addEmptyLine() : goodDesc;
     } else {
         return "";
@@ -52,8 +52,10 @@ function addDesc(size, desc, tab) {
 
 function breakWord(size, text, tab) {
 
+    text = text.replace(/[\s\r\n]+$/g, '');
+    
     // If the description goes on more than one line
-    if(text.length > size - tab) {
+    if (text.length > size - tab || /\r|\n|\r\n/.test(text)) {
         let newText = "";
         let lastSpace = count = lineStart = 0;
 
@@ -65,8 +67,8 @@ function breakWord(size, text, tab) {
                 lastSpace = i;
             }
 
-            // If we cross the character limit
-            if(i - lineStart >= size) {
+            // If we cross the character limit or if we have a new line
+            if (i - lineStart >= size || /\r|\n|\r\n/.test(text.charAt(i))) {
                 newText += text.substring(lineStart, lastSpace) + "\n** ";
                 for(j = 0; j < tab; j++) { newText += " "; };
                 lineStart = lastSpace+1;
@@ -74,9 +76,9 @@ function breakWord(size, text, tab) {
         }
 
         newText += text.substring(lineStart, text.length);
-        return newText;
+        return newText + '\n';
     } else {
-        return text;
+        return text + '\n';
     }
 }
 
@@ -86,10 +88,10 @@ function addArguments() {
 
     for(i = 0; i < args.length; i++) {
         type = args[i].querySelector("#func-arg-type").value;
-        name = args[i].querySelector("#func-arg-name").value;
+        argName = args[i].querySelector("#func-arg-name").value;
         desc = args[i].querySelector("#func-arg-desc").value;
 
-        arg = {"type": type, "name": name, "desc": desc};
+        arg = { "type": type, "name": argName, "desc": desc};
         argsarray[i] = arg;
     }
 
@@ -106,7 +108,7 @@ function addArguments() {
 
         argsLines += "** - " + argsarray[k]["type"] + " " + argsarray[k]["name"];
         for(l = 0; l < spaces; l++) { argsLines += " "; }
-        argsLines += " : " + breakWord(comLength-(infoLength+8), argsarray[k]["desc"], infoLength+5) + "\n";
+        argsLines += " : " + breakWord(comLength-(infoLength+8), argsarray[k]["desc"], infoLength+5);
     }
 
     return spaced ? argsLines += addEmptyLine() : argsLines;
@@ -117,7 +119,7 @@ function addReturn() {
     let desc = document.getElementById("func-return-desc").value;
 
     let ret = {"type": type, "desc": desc};
-    let goodReturn = "** Returns:\n** - " + ret["type"] + " : " + breakWord(comLength-(ret["type"].length+8), ret["desc"], ret["type"].length+5) + "\n";
+    let goodReturn = "** Returns:\n** - " + ret["type"] + " : " + breakWord(comLength-(ret["type"].length+8), ret["desc"], ret["type"].length+5);
     
     return spaced ? goodReturn += addEmptyLine() : goodReturn;
 }
