@@ -10,10 +10,20 @@
 </head>
 <body>
     <main>
-        <h1><span>// </span>Code comments generator</h1>
+        <div id="title-language">
+            <h1><span>// </span>Code comments generator</h1>
 
+            <label for="cmb-language">Language :</label>
+            <select name = "cmb-language" id = "cmb-language">
+                <option value="C_SHARP">C#</option>
+                <option value="JAVA">Java</option>
+                <option value="PYTHON">Python</option>
+                <option value="PHP">PHP</option>
+            </select>
+        </div>
+        
         <div id = "result">
-            <textarea name = "result" id = "result-field" rows = 10 spellcheck = "false"></textarea>
+            <textarea name="result" id="result-field" rows=10 spellcheck="false">Your future comment will appear here...</textarea>
 
             <div id = "comment-options">
                 <div class = "options-row">

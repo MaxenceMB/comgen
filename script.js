@@ -129,14 +129,15 @@ function addBotLine(size, filler) {
     
     let result = (hasCorners) ?  "\\*" : filler + filler;
     for(i = 0; i < size-4; i++) { result += filler; }
-    result += "*/\n";
+    result += "*/";
     return result;
 }
 
 function copyResult() {
     let resultField = document.getElementById("result-field");
     navigator.clipboard.writeText(resultField.value);
-    alert("Copied to clipboard !");
+    resultField.focus();
+    resultField.select();
 }
 
 function addArgumentForm() {
@@ -231,6 +232,7 @@ function removeReturnForm() {
     document.getElementById("btnReturn").innerHTML = "Add return";
     hasReturn = false;
 }
+
 
 function getOptions() {
     spaced = document.getElementById("chk-spaced").checked;
